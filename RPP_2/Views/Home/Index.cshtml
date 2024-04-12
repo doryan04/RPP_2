@@ -1,0 +1,63 @@
+﻿@{
+    
+    ViewBag.Title = "Лабораторная работа №2";
+
+    int current_id = ViewBag.CurrentID ?? 0;
+
+    TempData["is_internal_method"] = false;
+    
+}
+
+@model RPP_2.Models.User
+
+<h2> HTML Display for model (Current user data): </h2> 
+<p>
+    @Html.DisplayForModel()
+</p>
+
+<h2> User registration (LabelForModel): </h2> <h3> @Html.LabelForModel() </h3>
+
+<h4> Current user ID: @Session["current_id"] </h4>
+
+@using (Html.BeginRouteForm("", new { }, FormMethod.Post,
+  new { @class = "User" }))
+{
+    
+    <p>
+        <strong> @Html.LabelFor(x => x.name) </strong> <br>
+        @Html.EditorFor(x => x.name)
+    </p>
+    
+    <p>
+        <strong> @Html.LabelFor(x => x.last_name) </strong> <br>
+        @Html.EditorFor(x => x.last_name)
+    </p>
+    
+    <p>
+        <strong> @Html.LabelFor(x => x.date_birth) </strong> <br>
+        @Html.EditorFor(x => x.date_birth, new { @type = "date" })
+    </p>
+    
+    <p>
+        <strong> @Html.LabelFor(x => x.country) </strong> <br>
+        @Html.EditorFor(x => x.country)
+    </p>
+    
+    <p>
+        <strong> @Html.LabelFor(x => x.phone_number) </strong> <br>
+        @Html.EditorFor(x => x.phone_number, new { @type = "tel" })
+    </p>
+    
+    <button type="submit" name="account_button" value="Submit">
+        Register
+    </button>
+    
+    <button type="submit" name="account_button" value="Edit">
+        Edit user info
+    </button>
+    
+}
+
+@Html.ActionLink("Show all users with internal method", "", "AllUsers", new { kind_display_table_method = "internal" }, null)
+<br>
+@Html.ActionLink("Show all users with external method", "", "AllUsers", new { kind_display_table_method = "external" }, null)

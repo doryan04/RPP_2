@@ -15,7 +15,7 @@ namespace RPP_2.Controllers
         public ActionResult Index()
         {
 
-            TempData["method"] = Request.QueryString["kind_display_table_method"];
+            TempData["method"] = Request.QueryString["kind_display_table_method"] == "internal";
 
             return View(Database.list_users);
 

@@ -41,7 +41,7 @@
         </tr>
     </thead>
 
-    @if (TempData["method"] == "internal")
+    @if (Convert.ToBoolean(TempData["method"]) == true)
     {
         <tbody>
             @ListOfUsersInternalMethod(RPP_2.Models.Database.list_users)
